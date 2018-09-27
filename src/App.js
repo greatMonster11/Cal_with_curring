@@ -1,17 +1,13 @@
 import React from 'react'
 import './App.css'
-import { add, sub, div } from './operators'
+import generate from './generate'
 
 const WIN = 'WIN'
 const LOSE = 'LOSE'
 
 class App extends React.Component {
   state = {
-    goal: 12,
-    moves: 3,
-    initResult: 3,
-    currentResult: 3,
-    operators: [add(4), sub(4), div(4)],
+    ...generate(),
     gameEnd: false,
     gameResult: null
   }
