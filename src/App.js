@@ -6,10 +6,21 @@ const WIN = 'WIN'
 const LOSE = 'LOSE'
 
 class App extends React.Component {
-  state = {
-    ...generate(),
-    gameEnd: false,
-    gameResult: null
+  constructor(props) {
+    super(props)
+    const initState = {
+      ...generate(),
+      gameEnd: false,
+      gameResult: null
+    }
+
+    this.initState = initState
+    this.state = { ...initState }
+  }
+
+  doReset = e => {
+    e.preventDefault()
+    this.setState(this.initState)
   }
 
   doClickButton = op => e => {
@@ -55,7 +66,9 @@ class App extends React.Component {
             </button>
           ))}
 
-          <button className="button button--secondary button--clear">
+          <button 
+            className="button button--secondary button--clear"
+            onClick={this.doReset}>
             CLR
           </button>
           <button className="button button--secondary button--help">
